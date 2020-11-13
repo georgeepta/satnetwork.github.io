@@ -63,7 +63,7 @@ do
 		meanAnomaly=$(echo "scale=2; $orbit_wise_shift + ($num_sat_in_orbit * 360 / $NUM_SATS_PER_ORBIT)" | bc) # Spread satellites along an orbit
 		# echo "$num_orbit $num_sat_in_orbit $raan $meanAnomaly"
 
-		python get_sat_location.py $EPOCH $curr_t $raan $meanAnomaly $counter $num_orbit $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $num_sat_in_orbit >> ../output_data_generated/sat_positions/sat_positions_$min"".txt
+		python3 get_sat_location.py $EPOCH $curr_t $raan $meanAnomaly $counter $num_orbit $INCLINATION $ECCENTRICITY $ARG_OF_PERIGEE $MEAN_MOTION $num_sat_in_orbit >> ../output_data_generated/sat_positions/sat_positions_$min"".txt
 		last_orbit=$num_orbit
 		counter=$(( $counter + 1 ))
 	done

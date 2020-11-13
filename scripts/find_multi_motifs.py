@@ -42,7 +42,7 @@ city_coverage = {}
 city_pairs = {}
 orb_0_sat_positions = {}
 valid_isls = {}
-
+Grid_metrics = []
 
 def read_sat_positions(sat_pos_file):
     """
@@ -310,6 +310,9 @@ def compute_metric_avoid_city(grph):
             weightedStretchSum += stretch * weight
             weightedHopCountSum += hops * weight
 
+            ## +Grid save hops and stretch
+            Grid_metrics.append([stretch, hops])
+
             util.remove_coverage_for_city(grph, city1, city_coverage)
             util.remove_coverage_for_city(grph, city2, city_coverage)
         except Exception as e:
@@ -443,6 +446,7 @@ writer_level_wise_best_motif = open("../output_data_generated/multi_motif/level_
 
 best_motif_metric = -1.0
 # For each latitude zone, run the motif routine
+'''
 for l in range(0, len(levels) - 1):
     writer_level_motif_metrics = open("../output_data_generated/multi_motif/level_" + str(l) + "_motif_metrics.txt", 'a+')
     writer_level_best_motif = open("../output_data_generated/multi_motif/level_" + str(l) + "_best_motif.txt", 'a+')
@@ -504,12 +508,17 @@ for l in range(0, len(levels) - 1):
 writer_best_motif_overall = open(best_motif_overall, 'a+')
 write_edges_to_file(G, writer_best_motif_overall)
 writer_best_motif_overall.close()
-
+'''
 # Compute Phi-improvement over baseline
 metric = regenerate_baseline(baseline_config_file)
+with open("../hy533_project/results/Grid_metrics.txt", "a+") as fp:
+    for metric in Grid_metrics:
+        fp.write(str(metric[0]) + "," + str(metric[1]) + "\n")
+'''
 reduction = (metric["wMetric"] - best_motif_metric) * 100 / metric["wMetric"]
 print(metric["wMetric"], best_motif_metric, reduction)
 
 writer_imp = open(metric_reduction_file, 'a+')
 writer_imp.write(str(reduction))
 writer_imp.close()
+'''
