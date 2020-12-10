@@ -27,7 +27,7 @@
 
 NUM_ORBITS=40 # options: 40 (for 40_40_53deg), 34 (kuiper_p1), 24 (starlink_p1)
 NUM_SATS_PER_ORBIT=40 # options: 40 (for 40_40_53deg), 34 (kuiper_p1), 66 (starlink_p1)
-INCLINATION=53 # options: 53 (for 40_40_53deg), 51.9 (kuiper_p1), 53 (starlink_p1)
+INCLINATION=90 # options: 53 (for 40_40_53deg), 51.9 (kuiper_p1), 53 (starlink_p1)
 ECCENTRICITY=0.001 # Circular orbits
 ARG_OF_PERIGEE=0.0 # Circular orbits
 MEAN_MOTION=15.19 # 15.19 taken from Tintin A anb B TLEs
