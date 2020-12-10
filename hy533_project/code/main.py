@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import statistics
 
 def parse_stretch_hop_metrics(multi_motif_metrics_file, exclude_values):
     stretch_list = []
@@ -56,17 +57,17 @@ def reproduce_figure_5(rrg_stretch_list, rrg_hop_list, grid_stretch_list, grid_h
     plt.ylabel("CDF across city pairs")
     plt.savefig(save_plot_path)
 
-def reproduce_figure_10(grid_m1_list, best_m1_list, save_plot_path):
+def reproduce_figure_10(grid_m1_list, grid_m1_90_list, save_plot_path):
 
     grid_m1_data_sorted = np.sort(grid_m1_list)
     grid_m1_p = 1. * np.arange(len(grid_m1_list)) / (len(grid_m1_list) - 1)
     plt.figure(10)
     plt.plot(grid_m1_data_sorted, grid_m1_p, label="+Grid 53")
 
-    best_m1_data_sorted = np.sort(best_m1_list)
-    best_m1_p = 1. * np.arange(len(best_m1_list)) / (len(best_m1_list) - 1)
+    grid_m1_90_data_sorted = np.sort(grid_m1_90_list)
+    grid_m1_90_p = 1. * np.arange(len(grid_m1_90_list)) / (len(grid_m1_90_list) - 1)
     plt.figure(10)
-    plt.plot(best_m1_data_sorted, best_m1_p, label="Best motif 53")
+    plt.plot(grid_m1_90_data_sorted, grid_m1_90_p, label="+Grid Polar")
 
     plt.legend()
     plt.xlabel("City-city M1")
@@ -111,6 +112,10 @@ if __name__ == '__main__':
     grid_40_40_53deg_1467_hop_list,  \
     grid_40_40_53deg_1467_m1_list = parse_grid("results/Grid_metrics.txt")
 
+    grid_40_40_90deg_1467_stretch_list, \
+    grid_40_40_90deg_1467_hop_list, \
+    grid_40_40_90deg_1467_m1_list = parse_grid("results/Grid_metrics_90.txt")
+
     reproduce_figure_5(motif_40_40_53deg_5014_stretch_list,
                        motif_40_40_53deg_5014_hop_list,
                        grid_40_40_53deg_1467_stretch_list,
@@ -119,6 +124,15 @@ if __name__ == '__main__':
                        )
 
     reproduce_figure_10(grid_40_40_53deg_1467_m1_list,
-                        motif_40_40_53deg_5014_m1_list,
+                        grid_40_40_90deg_1467_m1_list,
                         "plots/figure10.png"
                         )
+
+    med_40_40_53deg_5014 = statistics.median(motif_40_40_53deg_5014_m1_list)
+    grid_med = statistics.median(grid_40_40_53deg_1467_m1_list)
+
+    print("med_40_40_53deg_5014: " + str(med_40_40_53deg_5014))
+    print("grid_med: " + str(grid_med))
+
+    reduction = (grid_med - med_40_40_53deg_5014) * 100 / grid_med
+    print(str(reduction) + "%")

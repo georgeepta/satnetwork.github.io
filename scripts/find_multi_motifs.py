@@ -311,7 +311,7 @@ def compute_metric_avoid_city(grph):
             weightedHopCountSum += hops * weight
 
             ## +Grid save hops and stretch
-            ##Grid_metrics.append([stretch, hops, (stretch + hops)])
+            #Grid_metrics.append([stretch, hops, (stretch + hops)])
 
             util.remove_coverage_for_city(grph, city1, city_coverage)
             util.remove_coverage_for_city(grph, city2, city_coverage)
@@ -512,7 +512,7 @@ writer_best_motif_overall.close()
 # Compute Phi-improvement over baseline
 metric = regenerate_baseline(baseline_config_file)
 '''
-with open("../hy533_project/results/Grid_metrics.txt", "a+") as fp:
+with open("../hy533_project/results/Grid_metrics_90.txt", "a+") as fp:
     for metric in Grid_metrics:
         fp.write(str(metric[0]) + "," + str(metric[1]) + "," + str(metric[2]) + "\n")
 '''
@@ -522,3 +522,5 @@ print(metric["wMetric"], best_motif_metric, reduction)
 writer_imp = open(metric_reduction_file, 'a+')
 writer_imp.write(str(reduction))
 writer_imp.close()
+
+
