@@ -57,7 +57,7 @@ def reproduce_figure_5(rrg_stretch_list, rrg_hop_list, grid_stretch_list, grid_h
     plt.ylabel("CDF across city pairs")
     plt.savefig(save_plot_path)
 
-def reproduce_figure_10(grid_m1_list, grid_m1_90_list, save_plot_path):
+def reproduce_figure_10(grid_m1_list, grid_m1_90_list, best_m1_list, best_m1_90_list, save_plot_path):
 
     grid_m1_data_sorted = np.sort(grid_m1_list)
     grid_m1_p = 1. * np.arange(len(grid_m1_list)) / (len(grid_m1_list) - 1)
@@ -69,6 +69,17 @@ def reproduce_figure_10(grid_m1_list, grid_m1_90_list, save_plot_path):
     plt.figure(10)
     plt.plot(grid_m1_90_data_sorted, grid_m1_90_p, label="+Grid Polar")
 
+    best_m1_data_sorted = np.sort(best_m1_list)
+    best_m1_p = 1. * np.arange(len(best_m1_list)) / (len(best_m1_list) - 1)
+    plt.figure(10)
+    plt.plot(best_m1_data_sorted, best_m1_p, label="Best motif 53")
+
+    best_m1_90_data_sorted = np.sort(best_m1_90_list)
+    best_m1_90_p = 1. * np.arange(len(best_m1_90_list)) / (len(best_m1_90_list) - 1)
+    plt.figure(10)
+    plt.plot(best_m1_90_data_sorted, best_m1_90_p, label="Best motif Polar")
+
+    plt.xlim(4, 16)
     plt.legend()
     plt.xlabel("City-city M1")
     plt.ylabel("CDF across city pairs")
@@ -108,6 +119,36 @@ if __name__ == '__main__':
                                      motif_level1_40_40_53deg_5014_m1_list + \
                                      motif_level2_40_40_53deg_5014_m1_list
 
+    motif_level0_40_40_90deg_5014_stretch_list, motif_level0_40_40_90deg_5014_hop_list, motif_level0_40_40_90deg_5014_m1_list = \
+        parse_stretch_hop_metrics(
+            "../output_data_generated/multi_motif_40_40_90deg_5014/level_0_motif_metrics.txt",
+            [99999.0]
+        )
+
+    motif_level1_40_40_90deg_5014_stretch_list, motif_level1_40_40_90deg_5014_hop_list, motif_level1_40_40_90deg_5014_m1_list = \
+        parse_stretch_hop_metrics(
+            "../output_data_generated/multi_motif_40_40_90deg_5014/level_1_motif_metrics.txt",
+            [99999.0]
+        )
+
+    motif_level2_40_40_90deg_5014_stretch_list, motif_level2_40_40_90deg_5014_hop_list, motif_level2_40_40_90deg_5014_m1_list = \
+        parse_stretch_hop_metrics(
+            "../output_data_generated/multi_motif_40_40_90deg_5014/level_2_motif_metrics.txt",
+            [99999.0]
+        )
+
+    motif_40_40_90deg_5014_stretch_list = motif_level0_40_40_90deg_5014_stretch_list + \
+                                          motif_level1_40_40_90deg_5014_stretch_list + \
+                                          motif_level2_40_40_90deg_5014_stretch_list
+
+    motif_40_40_90deg_5014_hop_list = motif_level0_40_40_90deg_5014_hop_list + \
+                                      motif_level1_40_40_90deg_5014_hop_list + \
+                                      motif_level2_40_40_90deg_5014_hop_list
+
+    motif_40_40_90deg_5014_m1_list = motif_level0_40_40_90deg_5014_m1_list + \
+                                          motif_level1_40_40_90deg_5014_m1_list + \
+                                          motif_level2_40_40_90deg_5014_m1_list
+
     grid_40_40_53deg_1467_stretch_list, \
     grid_40_40_53deg_1467_hop_list,  \
     grid_40_40_53deg_1467_m1_list = parse_grid("results/Grid_metrics.txt")
@@ -125,6 +166,8 @@ if __name__ == '__main__':
 
     reproduce_figure_10(grid_40_40_53deg_1467_m1_list,
                         grid_40_40_90deg_1467_m1_list,
+                        motif_40_40_53deg_5014_m1_list,
+                        motif_40_40_90deg_5014_m1_list,
                         "plots/figure10.png"
                         )
 
