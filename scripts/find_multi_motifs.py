@@ -515,9 +515,14 @@ metric = regenerate_baseline(baseline_config_file)
 with open("../hy533_project/results/Grid_metrics_90.txt", "a+") as fp:
     for metric in Grid_metrics:
         fp.write(str(metric[0]) + "," + str(metric[1]) + "," + str(metric[2]) + "\n")
+
+with open("../hy533_project/results/instantaneous_f1_+Grid.txt", "a+") as fp:
+    fp.write(str(metric["wMetric"]) + "\n")
 '''
 reduction = (metric["wMetric"] - best_motif_metric) * 100 / metric["wMetric"]
 print(metric["wMetric"], best_motif_metric, reduction)
+with open("../hy533_project/results/instantaneous_f1_best_motif.txt", "a+") as fp:
+    fp.write(str(best_motif_metric) + "\n")
 
 writer_imp = open(metric_reduction_file, 'a+')
 writer_imp.write(str(reduction))
