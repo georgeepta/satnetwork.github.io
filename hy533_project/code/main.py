@@ -149,7 +149,7 @@ def reproduce_figure_10(grid_m1_list, grid_m1_90_list, best_m1_list, best_m1_90_
 def reproduce_figure_11(f1_1467, f1_5014, save_plot_path):
 
     plt.figure(11)
-    plt.plot(["1467", "5014"], [f1_1467, f1_5014], marker="o", label="Best motif 53deg")
+    plt.plot(["+Grid\n(1467)", "5014"], [f1_1467, f1_5014], marker="o", label="Best motif 53deg")
 
     plt.ylim(0, 12)
     plt.legend()
