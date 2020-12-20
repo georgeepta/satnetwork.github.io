@@ -50,7 +50,7 @@ def reproduce_figure_5(rrg_stretch_list, rrg_hop_list, grid_stretch_list, grid_h
     grid_stretch_data_sorted = np.sort(grid_stretch_list)
     grid_stretch_p = 1. * np.arange(len(grid_stretch_list)) / (len(grid_stretch_list) - 1)
     plt.figure(5)
-    plt.plot(grid_stretch_data_sorted, grid_stretch_p, label = "+Grid stretch")
+    plt.plot(grid_stretch_data_sorted, grid_stretch_p, color="#3C74A1", label = "+Grid stretch")
 
     plt.figure(6)
     n, bins, patches = plt.hist(grid_hop_list, 200, density=True, histtype='step',
@@ -61,17 +61,17 @@ def reproduce_figure_5(rrg_stretch_list, rrg_hop_list, grid_stretch_list, grid_h
     y = y.cumsum()
     y /= y[-1]
     plt.figure(5)
-    plt.plot(bins, y, label="+Grid hop count")
+    plt.plot(bins, y, color="#3C74A1", linestyle="dashed", label="+Grid hop count")
 
     rrg_stretch_data_sorted = np.sort(rrg_stretch_list)
     rrg_stretch_p = 1. * np.arange(len(rrg_stretch_list)) / (len(rrg_stretch_list) - 1)
     plt.figure(5)
-    plt.plot(rrg_stretch_data_sorted, rrg_stretch_p, label = "RRG stretch")
+    plt.plot(rrg_stretch_data_sorted, rrg_stretch_p, color="#FF7000", label = "RRG stretch")
 
     rrg_hop_data_sorted = np.sort(rrg_hop_list)
     rrg_hop_p = 1. * np.arange(len(rrg_hop_list)) / (len(rrg_hop_list) - 1)
     plt.figure(5)
-    plt.plot(rrg_hop_data_sorted, rrg_hop_p, label = "RRG hop count")
+    plt.plot(rrg_hop_data_sorted, rrg_hop_p, color="#FF7000", linestyle="dashed", label = "RRG hop count")
 
     plt.legend()
     plt.xlabel("City-city stretch or hop count")
@@ -123,22 +123,22 @@ def reproduce_figure_10(grid_m1_list, grid_m1_90_list, best_m1_list, best_m1_90_
     grid_m1_data_sorted = np.sort(grid_m1_list)
     grid_m1_p = 1. * np.arange(len(grid_m1_list)) / (len(grid_m1_list) - 1)
     plt.figure(10)
-    plt.plot(grid_m1_data_sorted, grid_m1_p, label="+Grid 53")
+    plt.plot(grid_m1_data_sorted, grid_m1_p, color="#3C74A1", label="+Grid 53°")
 
     grid_m1_90_data_sorted = np.sort(grid_m1_90_list)
     grid_m1_90_p = 1. * np.arange(len(grid_m1_90_list)) / (len(grid_m1_90_list) - 1)
     plt.figure(10)
-    plt.plot(grid_m1_90_data_sorted, grid_m1_90_p, label="+Grid Polar")
+    plt.plot(grid_m1_90_data_sorted, grid_m1_90_p, color="#3C74A1", linestyle="dashed", label="+Grid Polar")
 
     best_m1_data_sorted = np.sort(best_m1_list)
     best_m1_p = 1. * np.arange(len(best_m1_list)) / (len(best_m1_list) - 1)
     plt.figure(10)
-    plt.plot(best_m1_data_sorted, best_m1_p, label="Best motif 53")
+    plt.plot(best_m1_data_sorted, best_m1_p, color="#FF7000", label="Best motif 53°")
 
     best_m1_90_data_sorted = np.sort(best_m1_90_list)
     best_m1_90_p = 1. * np.arange(len(best_m1_90_list)) / (len(best_m1_90_list) - 1)
     plt.figure(10)
-    plt.plot(best_m1_90_data_sorted, best_m1_90_p, label="Best motif Polar")
+    plt.plot(best_m1_90_data_sorted, best_m1_90_p, color="#FF7000", linestyle="dashed", label="Best motif Polar")
 
     plt.xlim(4, 16)
     plt.legend()
